@@ -1,0 +1,37 @@
+name: Build and deploy FRONT to gh-pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies (FRONT)
+        run: npm ci --prefix FRONT
+
+      - name: Build (FRONT)
+        env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL || 'http://localhost:8000' }}
+        run: npm run build --prefix FRONT
+
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          # куда пушим (ветка)
+          branch: gh-pages
+          # папка, которую развернём
+          folder: FRONT/dist
+          # очистить ветку перед деплоем
+          clean: true
