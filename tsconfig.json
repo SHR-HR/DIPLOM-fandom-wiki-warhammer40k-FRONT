@@ -1,0 +1,254 @@
+{
+  "compilerOptions": {
+    // Настройки компилятора TypeScript для React приложения
+    
+    // Целевая версия ECMAScript для компиляции
+    "target": "ES2020",
+    
+    // Использование современного синтаксиса define для полей класса
+    "useDefineForClassFields": true,
+    
+    // Подключаемые библиотеки TypeScript
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    
+    // Система модулей - ESNext для современных сборщиков
+    "module": "ESNext",
+    
+    // Пропуск проверки типов в файлах деклараций (.d.ts)
+    "skipLibCheck": true,
+
+    // Стратегия разрешения модулей для bundler'ов (Vite, Webpack)
+    "moduleResolution": "bundler",
+    
+    // Разрешение импорта TypeScript файлов с расширениями .ts, .tsx
+    "allowImportingTsExtensions": true,
+    
+    // Разрешение импорта JSON файлов как модулей
+    "resolveJsonModule": true,
+    
+    // Гарантия, что каждый файл компилируется изолированно
+    "isolatedModules": true,
+    
+    // Не генерировать файлы на выходе (Vite сам занимается сборкой)
+    "noEmit": true,
+    
+    // Настройка JSX для React 17+ (автоматический импорт jsx)
+    "jsx": "react-jsx",
+
+    // ===== СТРОГИЕ ПРОВЕРКИ TYPESCRIPT =====
+    
+    // Включение всех строгих проверок TypeScript
+    "strict": true,
+    
+    // Ошибка на неиспользуемые локальные переменные
+    "noUnusedLocals": true,
+    
+    // Ошибка на неиспользуемые параметры функций
+    "noUnusedParameters": true,
+    
+    // Ошибка на пропущенные break в операторах switch
+    "noFallthroughCasesInSwitch": true,
+
+    // ===== НАСТРОЙКИ ПУТЕЙ И АЛИАСОВ =====
+    
+    // Базовый URL для разрешения путей
+    "baseUrl": ".",
+    
+    // Алиасы для путей импорта
+    "paths": {
+      "@/*": ["./src/*"]  // @ теперь указывает на папку src/
+    }
+  },
+  
+  // Включаемые файлы для компиляции
+  "include": ["src"]
+}
+
+
+
+
+// Подробное объяснение конфигурации TypeScript:
+
+// Ключевые особенности этой конфигурации:
+
+// Совместимость с Vite:
+
+// // Эти настройки оптимизированы для Vite:
+// "moduleResolution": "bundler",      // Для современных сборщиков
+// "allowImportingTsExtensions": true, // Импорт .ts/.tsx без указания расширений
+// "noEmit": true,                     // Vite сам занимается компиляцией
+
+
+// Строгие проверки TypeScript:
+
+// // Примеры проверок:
+// function example(value: string | null) {
+//   // strictNullChecks: value может быть null
+//   console.log(value.length); // Ошибка: value возможно null
+  
+//   // noUnusedParameters: неиспользуемые параметры
+//   function unusedParam(param: string) { } // Ошибка: 'param' объявлен, но не используется
+  
+//   // noFallthroughCasesInSwitch: 
+//   switch (value) {
+//     case "a":
+//       console.log("a");
+//       // Ошибка: Fallthrough case in switch (нет break)
+//     case "b":
+//       console.log("b");
+//       break;
+//   }
+// }
+
+
+// Алиасы путей (paths):
+
+// Преимущества использования @/*:
+
+// // Вместо относительных путей:
+// import { Component } from '../../../../components/Component';
+
+// // Используем алиасы:
+// import { Component } from '@/components/Component';
+// import { api } from '@/utils/api';
+// import type { User } from '@/types/auth';
+
+
+// Настройка для Warhammer 40,000 вики:
+
+// // Примерная / рекомендуемая структура с алиасами:
+// src/
+// ├── components/          // React компоненты
+// │   ├── ui/             // Базовые UI компоненты
+// │   └── warhammer/      // Тематические компоненты Warhammer
+// ├── pages/              // Страницы приложения
+// ├── hooks/              // Кастомные React хуки
+// ├── utils/              // Вспомогательные функции
+// ├── types/              // TypeScript типы
+// │   └── warhammer.ts    // Типы для Warhammer сущностей
+// └── stores/             // Состояние (Zustand/Redux)
+
+
+// Интеграция с React и современным JavaScript:
+
+// JSX Transform (React 17+):
+
+// // Без необходимости импорта React в каждом файле
+// function Component() {
+//   return <div>Hello World</div>; // Автоматический импорт jsx
+// }
+
+// Современные возможности ES2020:
+
+// // Optional Chaining
+// const name = character?.mainInfo?.name;
+
+// // Nullish Coalescing  
+// const age = character?.mainInfo?.age ?? "Unknown";
+
+// // Dynamic Imports
+// const LazyComponent = lazy(() => import('@/components/LazyComponent'));
+
+
+// Для проекта Warhammer 40,000 вики:
+
+// Типизация Warhammer сущностей:
+
+// // src/types/warhammer.ts
+// export interface Character {
+//   id: number;
+//   title: string;
+//   author: string;
+//   author_id: number;
+//   mainInfo?: {
+//     name?: string;
+//     image?: string;
+//     age?: number;
+//     faction?: string;
+//     homeworld?: string;
+//     // ... другие поля Warhammer
+//   };
+//   mainContent?: ContentBlock[];
+// }
+
+// export type ContentBlock = 
+//   | { type: 'h1' | 'h2' | 'h3' | 'p'; content: string }
+//   | { type: 'image'; content: string; alt?: string }
+//   | { type: 'ul' | 'ol'; content: ContentBlock[] };
+
+// React компоненты с TypeScript:
+
+// // src/components/WarhammerCard.tsx
+// import type { Character } from '@/types/warhammer';
+
+// interface WarhammerCardProps {
+//   character: Character;
+//   onEdit?: (id: number) => void;
+// }
+
+// export const WarhammerCard: React.FC<WarhammerCardProps> = ({ 
+//   character, 
+//   onEdit 
+// }) => {
+//   return (
+//     <div className="border border-brass rounded-lg p-4">
+//       <h2 className="text-mech font-bold">{character.title}</h2>
+//       <p className="text-gray-600">By {character.author}</p>
+//       {/* TypeScript обеспечивает безопасность типов */}
+//     </div>
+//   );
+// };
+
+
+// Отличия от tsconfig.app.json:
+// Дополнительные настройки в этом файле:
+
+// {
+//   "resolveJsonModule": true,    // Импорт JSON файлов
+//   "baseUrl": ".",               // Базовый путь для разрешения модулей
+//   "paths": {                    // Алиасы для путей
+//     "@/*": ["./src/*"]
+//   }
+// }
+
+// Отсутствующие настройки (по сравнению с tsconfig.app.json):
+
+// // Эти настройки есть в tsconfig.app.json, но отсутствуют здесь:
+// {
+//   "moduleDetection": "force",    // Принудительное определение модулей
+//   "types": ["vite/client"]       // Типы для Vite
+// }
+
+
+// Рекомендации по улучшению:
+
+// Добавление недостающих настроек:
+
+// {
+//   "compilerOptions": {
+//     // ... существующие настройки
+    
+//     // Добавить для лучшей интеграции с Vite:
+//     "types": ["vite/client"],
+//     "moduleDetection": "force"
+//   }
+// }
+
+// Дополнительные алиасы:
+
+// {
+//   "paths": {
+//     "@/*": ["./src/*"],
+//     "@components/*": ["./src/components/*"],
+//     "@pages/*": ["./src/pages/*"],
+//     "@utils/*": ["./src/utils/*"],
+//     "@types/*": ["./src/types/*"]
+//   }
+// }
+
+// Эта конфигурация TypeScript обеспечивает надежную типизацию 
+// для фронтенда вики по Warhammer 40,000 с поддержкой современных возможностей
+// JavaScript и удобными алиасами путей для улучшения developer experience.
+
+
+

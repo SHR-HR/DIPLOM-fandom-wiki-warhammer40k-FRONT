@@ -1,0 +1,229 @@
+{
+  "compilerOptions": {
+    // Включение поддержки composite проектов (для ссылок между проектами TypeScript)
+    "composite": true,
+    
+    // Целевая версия ECMAScript для Node.js окружения
+    "target": "ES2022",
+    
+    // Библиотеки для Node.js окружения
+    "lib": ["ES2023"],
+    
+    // Система модулей для современных сборщиков
+    "module": "ESNext",
+    
+    // Пропуск проверки типов в файлах деклараций
+    "skipLibCheck": true,
+
+    // Стратегия разрешения модулей для bundler'ов
+    "moduleResolution": "bundler",
+    
+    // Разрешение импорта TypeScript файлов с расширениями
+    "allowImportingTsExtensions": true,
+    
+    // Гарантия изолированной компиляции файлов
+    "isolatedModules": true,
+    
+    // Принудительное определение файлов как модулей
+    "moduleDetection": "force",
+    
+    // Не генерировать файлы на выходе
+    "noEmit": true,
+    
+    // Строгие проверки TypeScript
+    "strict": true,
+    
+    // Ошибка на неиспользуемые локальные переменные
+    "noUnusedLocals": true,
+    
+    // Ошибка на неиспользуемые параметры
+    "noUnusedParameters": true,
+    
+    // Ошибка на пропущенные break в switch
+    "noFallthroughCasesInSwitch": true,
+
+    // Типы для Node.js окружения
+    "types": ["node"]
+  },
+  
+  // Включаемые файлы (только конфигурационные файлы Node.js)
+  "include": ["vite.config.ts"]
+}
+
+
+
+// Подробное объяснение конфигурации TypeScript для Node.js:
+
+// Назначение этого конфигурационного файла:
+
+// Этот tsconfig.node.json предназначен исключительно 
+// для Node.js окружения и конфигурационных файлов, 
+// в отличие от основного tsconfig.json, который настроен для браузерного приложения.
+
+// Ключевые отличия от основного tsconfig.json:
+
+// Целевые версии:
+
+// // tsconfig.node.json (Node.js)
+// "target": "ES2022",
+// "lib": ["ES2023"],
+
+// // tsconfig.json (Браузер)
+// "target": "ES2020", 
+// "lib": ["ES2020", "DOM", "DOM.Iterable"]
+
+
+// Почему разные версии:
+
+// Node.js поддерживает современные возможности JavaScript
+// Браузеры требуют более старых версий для совместимости
+// DOM библиотеки не нужны в Node.js окружении
+
+
+// Composite проекты:
+
+// "composite": true
+
+
+// Назначение:
+
+// Позволяет TypeScript проектам ссылаться друг на друга
+// Ускоряет инкрементальную сборку
+// Используется когда есть несколько взаимосвязанных tsconfig файлов
+
+
+// Специфика для Node.js окружения:
+// Типы Node.js:
+
+// "types": ["node"]
+
+// Предоставляет:
+
+// Глобальные переменные Node.js (process, __dirname, etc.)
+// Типы для встроенных модулей (fs, path, url, etc.)
+// Поддержку CommonJS и ES модулей
+
+
+// Только конфигурационные файлы:
+
+// "include": ["vite.config.ts"]
+
+// Ограничение области: Только файлы, которые выполняются в Node.js:
+
+// vite.config.ts - конфигурация Vite
+
+// Возможно другие конфигурационные файлы (если добавятся)
+
+
+
+// Интеграция с Vite:
+
+// vite.config.ts:
+
+// // Этот файл использует настройки tsconfig.node.json
+// import { defineConfig } from 'vite';
+// import react from '@vitejs/plugin-react';
+
+// // TypeScript проверяет этот файл с настройками Node.js
+// export default defineConfig({
+//   plugins: [react()],
+//   resolve: {
+//     alias: {
+//       '@': '/src',  // Node.js пути работают здесь
+//     },
+//   },
+//   // process.env доступен благодаря типам Node.js
+//   server: {
+//     port: parseInt(process.env.PORT || '3000'),
+//   },
+// });
+
+// Для проекта Warhammer 40,000 вики:
+
+// Конфигурационные файлы проекта:
+
+// FRONT/
+// ├── vite.config.ts              # ✅ входит в tsconfig.node.json
+// ├── tailwind.config.js          # ❌ JavaScript, не проверяется TypeScript
+// ├── postcss.config.js           # ❌ JavaScript, не проверяется TypeScript
+// ├── eslint.config.js            # ❌ JavaScript, не проверяется TypeScript
+// └── tsconfig.node.json          # ✅ конфигурация для Node.js файлов
+
+// Пример использования с кастомными конфигами:
+
+// // Если добавится custom-config.ts
+// import { defineConfig } from './src/types/config';
+
+// export const warhammerConfig = defineConfig({
+//   theme: {
+//     colors: {
+//       brass: "#B08D57",
+//       mech: "#C1121F"
+//     }
+//   }
+// });
+
+
+// Преимущества разделения конфигураций:
+// Производительность:
+
+// Браузерная конфигурация проверяет только файлы приложения
+// Node.js конфигурация проверяет только конфигурационные файлы
+// Меньше файлов для проверки = быстрее работа TypeScript
+
+// Соответствие окружению:
+// Браузер: DOM API, современные браузерные возможности
+// Node.js: File system, process.env, серверные возможности
+
+
+// Расширение конфигурации:
+
+// Добавление других конфигурационных файлов:
+
+// {
+//   "include": [
+//     "vite.config.ts",
+//     "scripts/**/*.ts",          // TypeScript скрипты
+//     "plugins/**/*.ts",          // Кастомные плагины
+//     "*.config.ts"               // Все конфигурационные файлы TypeScript
+//   ]
+// }
+
+// Настройка для монорепозитория:
+
+// {
+//   "compilerOptions": {
+//     "composite": true,
+//     // ... другие настройки
+//   },
+//   "references": [
+//     { "path": "../shared/tsconfig.json" }  // Ссылки на другие проекты
+//   ]
+// }
+
+// Практическое применение:
+
+// Проверка TypeScript в конфигах:
+
+// # Проверить только Node.js конфигурационные файлы
+// npx tsc --project tsconfig.node.json --noEmit
+
+// # Проверить только браузерные файлы приложения  
+// npx tsc --project tsconfig.json --noEmit
+
+
+// Интеграция с IDE:
+// VS Code автоматически использует соответствующий tsconfig
+// Правильные подсказки для process.env в vite.config.ts
+// Корректная проверка типов для Node.js API
+
+
+// Эта конфигурация обеспечивает строгую типизацию для конфигурационных файлов
+//  Node.js в проекте Warhammer 40,000 вики, сохраняя их отдельно от 
+//  основного браузерного кода для лучшей производительности 
+//  и соответствия окружению.
+
+
+
+
+

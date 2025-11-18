@@ -1,0 +1,254 @@
+{
+  "compilerOptions": {
+    // Целевая версия ECMAScript для компиляции
+    "target": "ES2020",
+    
+    // Использование современного синтаксиса для полей класса
+    "useDefineForClassFields": true,
+    
+    // Подключаемые библиотеки TypeScript
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    
+    // Система модулей
+    "module": "ESNext",
+    
+    // Пропуск проверки типов в файлах деклараций
+    "skipLibCheck": true,
+
+    // Стратегия разрешения модулей
+    "moduleResolution": "bundler",
+    
+    // Разрешение импортов с TypeScript расширениями
+    "allowImportingTsExtensions": true,
+    
+    // Гарантирует, что каждый файл может быть скомпилирован изолированно
+    "isolatedModules": true,
+    
+    // Принудительное определение файлов как модулей
+    "moduleDetection": "force",
+    
+    // Не генерировать файлы на выходе (Vite сам занимается сборкой)
+    "noEmit": true,
+    
+    // Настройка JSX для React 17+ (автоматический импорт jsx)
+    "jsx": "react-jsx",
+
+    // Строгие проверки TypeScript
+    "strict": true,
+    
+    // Ошибка на неиспользуемые локальные переменные
+    "noUnusedLocals": true,
+    
+    // Ошибка на неиспользуемые параметры
+    "noUnusedParameters": true,
+    
+    // Ошибка на пропущенные break в switch
+    "noFallthroughCasesInSwitch": true,
+
+    // Типы для Vite (переменные окружения, импорты и т.д.)
+    "types": ["vite/client"]
+  },
+  
+  // Включаемые файлы для компиляции
+  "include": ["src"]
+}
+
+
+
+
+
+// Подробное объяснение конфигурации TypeScript:
+
+
+// Секция compilerOptions:
+// Целевая версия JavaScript:
+
+// "target": "ES2020"
+
+// Поддерживаемые возможности:
+
+// Optional chaining: obj?.property
+// Nullish coalescing: value ?? defaultValue
+// Promise.allSettled, BigInt, dynamic imports
+// И другие ES2020 фичи
+
+
+// Система модулей:
+
+// "module": "ESNext",
+// "moduleResolution": "bundler"
+
+// Для современных сборщиков:
+
+// Vite, esbuild, Webpack 5+ понимают ESNext модули
+// Tree shaking работает эффективнее
+// Лучшая производительность сборки
+
+// Обработка TypeScript файлов:
+
+// "allowImportingTsExtensions": true,
+// "isolatedModules": true,
+// "noEmit": true
+
+// Интеграция с Vite:
+
+// Vite обрабатывает TypeScript на лету с помощью esbuild
+// TypeScript используется только для проверки типов
+// Быстрая компиляция без генерации файлов
+
+
+// Строгие проверки TypeScript:
+
+// strict: true включает:
+
+// // No Implicit Any
+// function greet(name) { } // Ошибка: параметр 'name' имеет неявный тип 'any'
+
+// // Strict Null Checks
+// let element = document.getElementById("root");
+// element.innerHTML = "hello"; // Ошибка: element возможно null
+
+// // И многие другие проверки...
+
+
+// Дополнительные строгие правила:
+
+// "noUnusedLocals": true,        // Неиспользуемые переменные
+// "noUnusedParameters": true,    // Неиспользуемые параметры
+// "noFallthroughCasesInSwitch": true // Пропущенные break в switch
+
+
+// JSX конфигурация:
+
+// jsx: "react-jsx":э
+
+// // До React 17:
+// import React from 'react';
+// function Component() { return <div>Hello</div>; }
+
+// // После React 17 (с этой настройкой):
+// function Component() { return <div>Hello</div>; } // Автоматический импорт
+
+
+// Интеграция с Vite:
+
+// Типы для Vite:
+
+// "types": ["vite/client"]
+
+// Доступные возможности:
+
+// // Переменные окружения
+// const apiUrl = import.meta.env.VITE_API_URL;
+
+// // Импорт assets
+// import logo from './logo.png?url';
+
+// // Глобальные типы Vite
+// interface ImportMetaEnv {
+//   readonly VITE_API_URL: string;
+//   readonly VITE_AUTH_MODE: string;
+// }
+
+
+// Для проекта Warhammer 40,000 вики:
+
+// Типизация для Warhammer сущностей:
+
+// // src/types/warhammer.ts
+// interface Character {
+//   id: number;
+//   name: string;
+//   faction: 'Imperium' | 'Chaos' | 'Xenos';
+//   mainInfo?: {
+//     age?: number;
+//     homeworld?: string;
+//     rank?: string;
+//   };
+// }
+
+// // TypeScript будет проверять соответствие типам
+// const spaceMarine: Character = {
+//   id: 1,
+//   name: "Space Marine",
+//   faction: "Imperium",
+//   mainInfo: {
+//     homeworld: "Terra"
+//   }
+// };
+
+// React компоненты с TypeScript:
+
+// // src/components/ArticleCard.tsx
+// interface ArticleCardProps {
+//   article: {
+//     id: number;
+//     title: string;
+//     author: string;
+//     previewImg?: string;
+//   };
+//   onEdit?: (id: number) => void;
+// }
+
+// export const ArticleCard: React.FC<ArticleCardProps> = ({ 
+//   article, 
+//   onEdit 
+// }) => {
+//   return (
+//     <div className="border rounded-lg p-4">
+//       <h3>{article.title}</h3>
+//       <p>By {article.author}</p>
+//       {onEdit && (
+//         <button onClick={() => onEdit(article.id)}>
+//           Edit
+//         </button>
+//       )}
+//     </div>
+//   );
+// };
+
+
+// Преимущества для разработки:
+// Безопасность типов:
+
+// Предотвращение runtime ошибок
+
+// Автодополнение в IDE
+
+// Рефакторинг с уверенностью
+
+// Интеграция с современным стеком:
+// Vite для быстрой разработки
+
+// React с автоматическими импортами
+
+// Современный JavaScript без транспиляции
+
+
+// Расширение конфигурации:
+// Добавление путей (path mapping):
+
+// {
+//   "compilerOptions": {
+//     // ... существующие настройки
+//     "baseUrl": ".",
+//     "paths": {
+//       "@/*": ["src/*"],
+//       "@components/*": ["src/components/*"],
+//       "@types/*": ["src/types/*"]
+//     }
+//   }
+// }
+
+// Использование:
+
+// import { ArticleCard } from '@/components/ArticleCard';
+// import type { Character } from '@types/warhammer';
+
+// Эта конфигурация TypeScript обеспечивает строгую типизацию для фронтенда вики 
+// по Warhammer 40,000, сочетая современные возможности JavaScript с 
+// надежностью TypeScript и бесшовной интеграцией с Vite.
+
+
+
+

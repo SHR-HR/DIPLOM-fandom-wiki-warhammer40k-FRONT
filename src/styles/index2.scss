@@ -1,0 +1,1649 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ______________________________________ */
+
+:root {
+  --ring: #B08D57;
+  --brass: #8B7355;
+  --brass-dark: #6B5940;
+  --mech: #C1121F;
+  --blood: #5C0A0A;
+  --void: #000000;
+  --rust: #8B4513;
+  --bone: #D4C5B9;
+  --gothic-shadow: rgba(0, 0, 0, 0.9);
+  --blood-shadow: rgba(193, 18, 31, 0.3);
+}
+
+/* ______________________________________ */
+
+@keyframes blood-pulse {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.3; }
+}
+
+/* ______________________________________ */
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(180, 141, 87, 0.2); }
+  50% { box-shadow: 0 0 40px rgba(180, 141, 87, 0.4); }
+}
+
+/* ______________________________________ */
+
+@keyframes shimmer {
+  0% { background-position: -1000px 0; }
+  100% { background-position: 1000px 0; }
+}
+
+/* ______________________________________ */
+
+body {
+  @apply text-gray-300;
+  background:
+    linear-gradient(180deg, #000000 0%, #050505 30%, #0a0000 70%, #000000 100%),
+    radial-gradient(ellipse at 10% 20%, rgba(139, 0, 0, 0.25) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 80%, rgba(193, 18, 31, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 100%, rgba(92, 10, 10, 0.2) 0%, transparent 60%);
+  background-attachment: fixed;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* ______________________________________ */
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 100px,
+      rgba(139, 69, 19, 0.02) 100px,
+      rgba(139, 69, 19, 0.02) 101px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 100px,
+      rgba(139, 0, 0, 0.02) 100px,
+      rgba(139, 0, 0, 0.02) 101px
+    );
+  pointer-events: none;
+  opacity: 0.15;
+  z-index: 1;
+}
+
+/* ______________________________________ */
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    radial-gradient(circle at 50% 0%, transparent 0%, rgba(0, 0, 0, 0.6) 100%),
+    radial-gradient(circle at 0% 50%, rgba(92, 10, 10, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 100% 50%, rgba(139, 69, 19, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 1;
+  animation: blood-pulse 8s ease-in-out infinite;
+}
+
+/* ______________________________________ */
+
+.dark body {
+  @apply bg-black text-gray-100;
+  background-image:
+    radial-gradient(circle at 20% 50%, rgba(193, 18, 31, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(180, 141, 87, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 50% 10%, rgba(0, 0, 0, 0.95) 0%, transparent 30%);
+}
+
+/* ______________________________________ */
+
+.light body {
+  @apply bg-stone-200 text-gray-900;
+  background:
+    linear-gradient(180deg, #e7e5e4 0%, #d6d3d1 30%, #a8a29e 70%, #78716c 100%),
+    radial-gradient(ellipse at 20% 30%, rgba(120, 53, 15, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(87, 83, 78, 0.2) 0%, transparent 50%);
+  background-attachment: fixed;
+}
+
+/* ______________________________________ */
+
+.light body::before {
+  background:
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 100px,
+      rgba(120, 53, 15, 0.03) 100px,
+      rgba(120, 53, 15, 0.03) 101px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 100px,
+      rgba(87, 83, 78, 0.03) 100px,
+      rgba(87, 83, 78, 0.03) 101px
+    );
+  opacity: 0.3;
+}
+
+/* ______________________________________ */
+
+.light body::after {
+  background:
+    radial-gradient(circle at 50% 0%, transparent 0%, rgba(41, 37, 36, 0.3) 100%),
+    radial-gradient(circle at 0% 50%, rgba(120, 53, 15, 0.1) 0%, transparent 50%);
+  opacity: 0.5;
+}
+
+/* ______________________________________ */
+
+.light input,
+.light textarea,
+.light select {
+  @apply bg-stone-100 text-gray-900 border-2;
+  border-color: #78716c !important;
+}
+
+/* ______________________________________ */
+
+.light button {
+  @apply border-2;
+}
+
+/* ______________________________________ */
+
+.light header {
+  @apply bg-gray-300/0 border-stone-300 text-gray-900;
+  backdrop-filter: saturate(180%) blur(8px);
+}
+
+/* ______________________________________ */
+
+.light footer {
+  @apply bg-white/95 border-stone-300 text-gray-900;
+  backdrop-filter: saturate(180%) blur(6px);
+}
+
+/* ______________________________________ */
+
+.light .bg-gray-900,
+.light .bg-black,
+.light .bg-zinc-950 {
+  @apply text-stone-100;
+}
+
+/* ______________________________________ */
+
+.light .bg-gray-800,
+.light .bg-zinc-900 {
+  @apply bg-stone-700 text-stone-100;
+}
+
+/* ______________________________________ */
+
+.light .text-gray-100,
+.light .text-gray-200,
+.light .text-gray-300 {
+  @apply text-stone-900;
+}
+
+/* ______________________________________ */
+
+.light .text-gray-400 {
+  @apply text-stone-700;
+}
+
+/* ______________________________________ */
+
+.light .text-gray-500,
+.light .text-gray-600 {
+  @apply text-stone-600;
+}
+
+/* ______________________________________ */
+
+.light .border-gray-700,
+.light .border-gray-800,
+.light .border-zinc-800 {
+  @apply border-stone-700;
+}
+
+/* ______________________________________ */
+
+.light input:focus,
+.light textarea:focus,
+.light select:focus {
+  border-color: #B08D57 !important;
+  box-shadow: 0 0 0 3px rgba(180, 141, 87, 0.1) !important;
+}
+
+/* ______________________________________ */
+
+.light input::placeholder,
+.light textarea::placeholder {
+  color: #9ca3af;
+}
+
+/* ______________________________________ */
+
+.light button:not(.bg-brass):not(.bg-mech) {
+  color: #111827;
+  background-color: #f3f4f6 !important;
+}
+
+/* ______________________________________ */
+
+.light button:not(.bg-brass):not(.bg-mech):hover {
+  background-color: #e5e7eb !important;
+}
+
+/* ______________________________________ */
+
+.light .text-gray-400 {
+  color: #4b5563 !important;
+}
+
+/* ______________________________________ */
+
+.light .text-gray-300 {
+  color: #1f2937 !important;
+}
+
+/* ______________________________________ */
+
+.light .bg-gray-900 {
+  background-color: #ffffff !important;
+  border-color: #e5e7eb !important;
+}
+
+/* ______________________________________ */
+
+.light .bg-gray-800 {
+  background-color: #f9fafb !important;
+}
+
+/* ______________________________________ */
+
+.light .border-gray-700 {
+  border-color: #d1d5db !important;
+}
+
+/* ______________________________________ */
+
+.wh-frame {
+  @apply border-2 border-brass rounded-2xl shadow-lg;
+  box-shadow: 0 0 20px var(--gothic-shadow);
+}
+
+/* ______________________________________ */
+
+.dark .wh-frame {
+  /* gray-900 */
+  background-color: rgb(17 24 39);
+  background-image: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.9) 100%);
+}
+
+/* ______________________________________ */
+
+.light .wh-frame {
+  @apply bg-white border-gray-300;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ______________________________________ */
+
+.gothic-border {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--brass) 15%,
+      var(--brass) 85%,
+      transparent 100%);
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      var(--mech) 15%,
+      var(--mech) 85%,
+      transparent 100%);
+  }
+}
+
+/* ______________________________________ */
+
+*:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ______________________________________ */
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+  letter-spacing: 0.08em;
+  text-shadow:
+    0 0 20px rgba(180, 141, 87, 0.6),
+    0 0 40px rgba(193, 18, 31, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.9),
+    0 0 60px rgba(139, 0, 0, 0.2);
+  position: relative;
+}
+
+/* ______________________________________ */
+
+.imperial-aquila {
+  background:
+    linear-gradient(135deg,
+      var(--brass) 0%,
+      #D4AF37 20%,
+      #8B7355 50%,
+      #D4AF37 80%,
+      var(--brass) 100%
+    );
+  background-size: 200% 200%;
+  animation: shimmer 3s linear infinite;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter:
+    drop-shadow(0 0 15px rgba(180, 141, 87, 0.7))
+    drop-shadow(0 0 30px rgba(180, 141, 87, 0.3));
+}
+
+/* ______________________________________ */
+
+button {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* ______________________________________ */
+
+button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(180, 141, 87, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+/* ______________________________________ */
+
+button:hover::before {
+  width: 300px;
+  height: 300px;
+}
+
+/* ______________________________________ */
+
+button:hover {
+  box-shadow:
+    0 0 30px rgba(180, 141, 87, 0.5),
+    0 0 60px rgba(180, 141, 87, 0.2),
+    inset 0 0 20px rgba(180, 141, 87, 0.1);
+  transform: translateY(-2px);
+}
+
+/* ______________________________________ */
+
+button:active {
+  transform: translateY(0);
+}
+
+.border-brass {
+  box-shadow:
+    0 0 20px rgba(180, 141, 87, 0.3),
+    0 0 40px rgba(180, 141, 87, 0.1),
+    inset 0 0 20px rgba(0, 0, 0, 0.8),
+    inset 0 0 40px rgba(139, 0, 0, 0.1);
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ______________________________________ */
+
+input, textarea, select {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+/* ______________________________________ */
+
+input:focus, textarea:focus, select:focus {
+  box-shadow:
+    0 0 20px rgba(180, 141, 87, 0.4),
+    0 0 40px rgba(180, 141, 87, 0.2),
+    inset 0 0 10px rgba(180, 141, 87, 0.05);
+  border-color: rgba(87, 180, 109, 0.8);
+}
+
+/* ______________________________________ */
+
+.tooltip {
+  @apply absolute z-50 px-3 py-2 text-sm bg-gray-900 border border-brass rounded-lg shadow-xl;
+  box-shadow:
+    0 0 20px rgba(180, 141, 87, 0.4),
+    0 0 40px rgba(0, 0, 0, 0.6);
+  animation: fadeIn 0.2s ease-in;
+}
+
+/* ______________________________________ */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ______________________________________ */
+
+.error-shake {
+  animation: shake 0.4s ease-in-out;
+}
+
+/* ______________________________________ */
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
+}
+
+/* ______________________________________ */
+/* ______________________________________ */
+/* ______________________________________ */
+/* ______________________________________ */
+/* ______________________________________ */
+/* ______________________________________ */
+/* ______________________________________ */
+/* ______________________________________ */
+/* ______________________________________ */
+/* ______________________________________ */
+
+/* ========== Медиа-рамки и изображения (общие) ========== */
+.fw-shadow {
+  box-shadow:
+    0 0 20px rgba(180,141,87,0.20),
+    0 10px 30px rgba(0,0,0,0.55),
+    inset 0 0 14px rgba(0,0,0,0.45);
+}
+
+/* ______________________________________ */
+
+/* Картинки из обычного markdown/typography (НЕ SmartImg) */
+.prose img {
+  @apply block w-full h-auto object-contain rounded-xl select-none;
+  margin: 0; /* чтобы не спорить с рамкой SmartImg */
+}
+
+/* ______________________________________ */
+
+/* SmartImg */
+.smartimg-frame {
+  @apply rounded-xl overflow-hidden border-2 border-brass fw-shadow;
+}
+.smartimg-frame > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 !important;
+  border-radius: 0 !important; /* радиус только у рамки */
+}
+
+/* ______________________________________ */
+
+/* ========== Light: читаемость обычного контента (вне превью) ========== */
+.light .wh-frame,
+.light .wh-frame * { color: #1f2937; } /* gray-800/900 */
+
+.light .prose,
+.light .prose p,
+.light .prose li,
+.light .prose h1,
+.light .prose h2,
+.light .prose h3,
+.light .prose h4,
+.light .prose h5,
+.light .prose h6,
+.light .prose small {
+  color: #1f2937 !important;
+  opacity: 1 !important;
+}
+
+/* ______________________________________ */
+
+.light .prose ul > li::marker,
+.light .prose ol > li::marker { color: #6b7280; } /* gray-500 */
+
+.light .prose a {
+  color: #0f172a;                 /* slate-900 */
+  text-decoration-color: #b08d57; /* brass */
+}
+
+/* ______________________________________ */
+
+/* Белый текст внутри белой карточки — делаем тёмным */
+.light .wh-frame [class*="text-white"] {
+  color: #1f2937 !important;
+  opacity: 1 !important;
+}
+
+/* ______________________________________ */
+
+/* ========== Глобальные заголовки: светлая vs тёмная ========== */
+.dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+  text-shadow:
+    0 0 20px rgba(180,141,87,0.6),
+    0 0 40px rgba(193,18,31,0.3),
+    0 4px 8px rgba(0,0,0,0.9),
+    0 0 60px rgba(139,0,0,0.2);
+}
+.light h1, .light h2, .light h3, .light h4, .light h5, .light h6 {
+  text-shadow: 0 1px 0 rgba(0,0,0,0.04);
+}
+.light .imperial-aquila {
+  filter:
+    drop-shadow(0 0 4px rgba(180,141,87,0.25))
+    drop-shadow(0 0 10px rgba(180,141,87,0.12));
+  animation: shimmer 4.5s linear infinite;
+}
+
+/* ______________________________________ */
+
+/* === LIGHT: онлайн-превью статьи (единый, без дублей) ================== */
+.light .wh-preview {
+  /* локальная палитра */
+  --pv-bg: #ffffff;
+  --pv-bg-soft: #fbfbfb;
+  --pv-fg: #111827;        /* gray-900 */
+  --pv-muted: #6b7280;     /* gray-500 */
+  --pv-soft: #9ca3af;      /* gray-400 */
+  --pv-border: #e6e7ea;    /* сероватая рамка */
+  --pv-surface: #f9fafb;   /* gray-50 */
+  --pv-accent: #B08D57;    /* brass */
+  --pv-radius: 16px;
+
+  position: relative; 
+  z-index: 2;               /* поверх body::before/after */
+  isolation: isolate;       /* режем фоновые эффекты */
+  background:
+    radial-gradient(1200px 500px at 60% -5%, #fff 0%, #fdfdfd 45%, var(--pv-bg-soft) 100%),
+    linear-gradient(#fff, #fff);
+  color: var(--pv-fg);
+  border: 1px solid var(--pv-border);
+  border-radius: var(--pv-radius);
+  box-shadow:
+    0 14px 30px rgba(0,0,0,0.06),
+    0 3px 10px rgba(0,0,0,0.04);
+  padding: clamp(14px, 2.2vw, 22px);
+}
+
+/* ______________________________________ */
+
+/* Типографика в превью — чистая, без «глоу» */
+.light .wh-preview :where(h1,h2,h3) {
+  color: #0f172a; /* slate-900 */
+  text-shadow: none;
+  letter-spacing: .015em;
+  line-height: 1.15;
+  margin: .7em 0 .4em;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview h1 { font-size: clamp(24px, 3.2vw, 30px); font-weight: 800; }
+.light .wh-preview h2 { font-size: clamp(20px, 2.6vw, 24px); font-weight: 750; }
+.light .wh-preview h3 { font-size: clamp(17px, 2.2vw, 19px); font-weight: 700; }
+
+.light .wh-preview :where(p,li,small){
+  color: #1f2937 !important;        /* gray-800 */
+  line-height: 1.6;
+  opacity: 1 !important;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview p { margin: .55em 0 1em; }
+.light .wh-preview li + li { margin-top: .35em; }
+
+.light .wh-preview ul,
+.light .wh-preview ol { padding-left: 1.25rem; margin: .4em 0 1em; }
+.light .wh-preview ul > li::marker { color: var(--pv-muted); }
+.light .wh-preview ol > li::marker { color: var(--pv-soft); }
+
+.light .wh-preview a {
+  color: #0f172a;
+  text-decoration: underline;
+  text-decoration-color: var(--pv-accent);
+  text-underline-offset: 2px;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview hr {
+  border: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--pv-border), transparent);
+  margin: 14px 0;
+}
+
+/* ______________________________________ */
+
+/* Карточки/врезки/рамки внутри превью — светлые поверхности */
+.light .wh-preview :where(.wh-frame,.card,.smartimg-frame) {
+  background: var(--pv-bg) !important;
+  color: var(--pv-fg) !important;
+  border: 1px solid var(--pv-border) !important;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.08),
+    inset 0 0 10px rgba(0,0,0,0.02);
+}
+
+/* ______________________________________ */
+
+/* На всякий случай: если кто-то притащил тёмные bg внутрь превью — осветлить */
+.light .wh-preview :where(.bg-gray-900,.bg-zinc-950,.bg-black){
+  background: #ffffff !important;
+  color: #111827 !important;
+  border-color: #e5e7eb !important;
+}
+
+/* ______________________________________ */
+
+/* Шапки секций/табличек */
+.light .wh-preview .section-title,
+.light .wh-preview .card > .title {
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: #111827;
+  border-bottom: 1px solid var(--pv-border);
+  padding-bottom: .45rem;
+  margin-bottom: .65rem;
+}
+
+/* ______________________________________ */
+
+/* Таблица характеристик — «мета-сетка» */
+.light .wh-preview .meta-grid {
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+  gap: 10px 14px;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview .meta-grid dt { color: #6b7280; font-weight: 600; }
+.light .wh-preview .meta-grid dd { color: #1f2937; }
+
+/* Плейсхолдер/пустая картинка в превью */
+.light .wh-preview .smartimg-frame:has(img[src=""]),
+.light .wh-preview .smartimg-frame:has(img:not([src])),
+.light .wh-preview .smartimg-frame.is-empty {
+  background:
+    repeating-linear-gradient(45deg,#fafafa 0 12px,#f4f4f5 12px 24px) !important;
+  border: 1.5px dashed var(--pv-border) !important;
+  color: #6b7280 !important;
+  display: grid;
+  place-items: center;
+  min-height: clamp(140px, 22vw, 240px);
+}
+
+/* ______________________________________ */
+
+.light .wh-preview .smartimg-frame img {
+  /* если изображение не загрузилось и элемент сам по себе тёмный */
+  background-color: #f8fafc !important; /* gray-50 */
+}
+
+/* ______________________________________ */
+
+/* Поля формы, если встречаются внутри превью */
+.light .wh-preview :where(input,textarea,select) {
+  background: var(--pv-surface);
+  border: 1px solid var(--pv-border);
+  color: var(--pv-fg);
+  border-radius: 10px;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview :where(input,textarea,select):focus {
+  border-color: var(--pv-accent) !important;
+  box-shadow: 0 0 0 3px rgba(176,141,87,.14) !important;
+}
+
+/* ______________________________________ */
+
+/* Аквилла мягче внутри превью */
+.light .wh-preview .imperial-aquila {
+  filter:
+    drop-shadow(0 0 3px rgba(176,141,87,.22))
+    drop-shadow(0 0 8px rgba(176,141,87,.10));
+  animation: shimmer 4.5s linear infinite;
+}
+
+/* ______________________________________ */
+
+/* === LIGHT: полировка превью (v2, поверх текущих правил) ================= */
+
+/* Контентная колонка внутри превью — центр и предсказуемая ширина */
+.light .wh-preview {
+  --pv-content: 68ch;                /* ширина текстовой колонки */
+}
+
+/* ______________________________________ */
+
+/* Центруем типовые текстовые блоки и заголовки в пределах колонки */
+.light .wh-preview :where(h1,h2,h3,p,ul,ol,blockquote,pre,figure,table){
+  max-width: var(--pv-content);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ______________________________________ */
+
+/* Сетки/карточки и большие медиа — идут на всю ширину превью */
+.light .wh-preview :where(.wh-frame,.card,.meta-grid,.smartimg-frame){
+  max-width: none;
+}
+
+/* ______________________________________ */
+
+/* Базовая типографика: ритм, интерлиньяж, «воздух» */
+.light .wh-preview :where(p,li){
+  line-height: 1.65;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview p { margin: .6em 0 1.05em; }
+.light .wh-preview li + li { margin-top: .35em; }
+
+/* Заголовки: чуть компактнее, но плотнее визуально */
+.light .wh-preview h1 { font-size: clamp(24px, 3.2vw, 30px); }
+.light .wh-preview h2 { font-size: clamp(20px, 2.6vw, 24px); }
+.light .wh-preview h3 { font-size: clamp(17px, 2.1vw, 19px); }
+
+/* Ссылки — опрятный ховер (чуть толще подчёркивание и смещение) */
+.light .wh-preview a{
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview a:hover{
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+/* ______________________________________ */
+
+/* Blockquote — лёгкая латунная полоса и приглушённый текст */
+.light .wh-preview blockquote{
+  position: relative;
+  color: #374151;
+  background: #fafafa;
+  border: 1px solid var(--pv-border);
+  border-radius: 12px;
+  padding: .85rem 1rem .85rem 1.1rem;
+  margin: 1rem auto;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview blockquote::before{
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(#d9c6a2, #b08d57);
+  border-radius: 12px 0 0 12px;
+}
+
+/* ______________________________________ */
+
+/* Код: инлайн и блочный */
+.light .wh-preview :not(pre) > code{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: .9em;
+  background: #f3f4f6;
+  border: 1px solid var(--pv-border);
+  border-radius: 6px;
+  padding: .1em .35em;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview pre{
+  background: #0f172a0a;               /* очень светлый слейт */
+  border: 1px solid var(--pv-border);
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  overflow: auto;
+  font-size: .92em;
+  line-height: 1.55;
+}
+
+/* ______________________________________ */
+
+/* Таблицы (если вдруг появятся) */
+.light .wh-preview table{
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--pv-border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: #fff;
+  margin: .8rem auto;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview thead th{
+  background: #f8fafc;
+  font-weight: 700;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview th,
+.light .wh-preview td{
+  border-top: 1px solid #eef2f7;
+  padding: .55rem .7rem;
+  text-align: left;
+}
+
+/* ______________________________________ */
+
+/* Фигуры и подписи к изображениям */
+.light .wh-preview figure{
+  max-width: var(--pv-content);
+  margin: 1rem auto;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview figcaption{
+  color: #6b7280;                       /* gray-500 */
+  font-size: .85em;
+  margin-top: .4rem;
+  text-align: center;
+}
+
+/* ______________________________________ */
+
+/* Плейсхолдер медиа — светлее титра, контрастнее подпись */
+.light .wh-preview .media-placeholder,
+.light .wh-preview .image-empty{
+  background: repeating-linear-gradient(45deg,#fbfbfb 0 12px,#f3f4f6 12px 24px);
+  color: #6b7280;
+}
+
+/* ______________________________________ */
+
+/* Светлая тема: если бэкенд отдаёт тёмную заглушку внутри <img> */
+.light .wh-preview img[alt*="unavailable"],
+.light .wh-preview img[src=""],
+.light .wh-preview img:not([src]) {
+  background: #f8fafc !important;   /* gray-50 */
+  color: #6b7280 !important;         /* gray-500 для текста заглушки */
+}
+
+/* ______________________________________ */
+
+/* На всякий случай — если плейсхолдер приходит отдельным элементом */
+.light .wh-preview .placeholder,
+.light .wh-preview .image-placeholder {
+  background: repeating-linear-gradient(45deg,#fbfbfb 0 12px,#f3f4f6 12px 24px) !important;
+  border: 1.5px dashed var(--pv-border) !important;
+  color: #6b7280 !important;
+}
+
+/* ______________________________________ */
+
+/* === LIGHT: выразительные акценты и «Главная информация» ================= */
+
+/* 1) Подчёркнутые заголовки без глоу — латунная линия + мягкий контраст */
+.light .wh-preview h1,
+.light .wh-preview h2,
+.light .wh-preview h3 {
+  position: relative;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview h2::after,
+.light .wh-preview h3::after {
+  content: "";
+  display: block;
+  height: 3px;
+  margin-top: .4rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #b08d57, rgba(176,141,87,0));
+  opacity: .35;
+}
+
+/* ______________________________________ */
+
+/* 2) Сильный текст и курсив — немного «тепла», но без крика */
+.light .wh-preview strong { color: #0f172a; }
+.light .wh-preview em {
+  background: linear-gradient(180deg, rgba(176,141,87,.10), rgba(176,141,87,0));
+  border-radius: .2em;
+  padding: 0 .08em;
+}
+
+/* ______________________________________ */
+
+/* 3) «Главная информация»: оформляем пары «лейбл: значение»
+      Работает как для <dl><dt><dd>, так и для списков, где лейбл помечен .label */
+.light .wh-preview dl:not(.meta-grid) {
+  /* делаем «строки» списком с разделителями */
+  margin: .2rem 0 .4rem;
+  border-top: 1px solid #eef2f7;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview dl:not(.meta-grid) > div,
+.light .wh-preview dl:not(.meta-grid) > * {
+  /* на случай, если обёртки нет — выглядит всё равно аккуратно */
+  padding: .45rem 0;
+  border-bottom: 1px solid #eef2f7;
+}
+
+/* ______________________________________ */
+
+@media (min-width: 560px) {
+  .light .wh-preview dl:not(.meta-grid) {
+    display: grid;
+    grid-template-columns: minmax(140px, 220px) 1fr;
+    column-gap: 14px;
+  }
+  .light .wh-preview dl:not(.meta-grid) dt { grid-column: 1; }
+  .light .wh-preview dl:not(.meta-grid) dd { grid-column: 2; }
+}
+
+/* ______________________________________ */
+
+.light .wh-preview dt,
+.light .wh-preview .label {
+  color: #6b7280;                 /* gray-500 */
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: .78rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* ______________________________________ */
+
+.light .wh-preview dd {
+  color: #1f2937;                 /* gray-800 */
+  margin: 0;                      /* обнуляем, чтобы не ломать сетку */
+}
+
+/* ______________________________________ */
+
+/* 4) Лёгкие «бейджи-значения» — можно применять точечно (на span.badge) */
+.light .wh-preview .value-badge,
+.light .wh-preview .badge-value {
+  display: inline-block;
+  background: #f9fafb;
+  border: 1px solid #e6e7ea;
+  border-radius: 8px;
+  padding: .1rem .45rem;
+  font-size: .85em;
+  color: #374151;
+}
+
+/* ______________________________________ */
+
+/* 5) Маркеры списков — аккуратная латунь, лучше видимость на светлом */
+.light .wh-preview ul > li::marker { color: #b08d57; opacity: .65; }
+.light .wh-preview ol > li::marker { color: #9ca3af; }
+
+/* 6) Карточка «Главная информация» — чуть выраженнее заголовок секции */
+.light .wh-preview .section-title,
+.light .wh-preview .card > .title {
+  color: #0f172a;
+  font-weight: 800;
+  letter-spacing: .03em;
+  border-bottom: 1px solid #e6e7ea;
+  padding-bottom: .5rem;
+  margin-bottom: .7rem;
+}
+
+/* ______________________________________ */
+
+/* 7) Врезки/примечания (если используешь .callout, .note) */
+.light .wh-preview .callout,
+.light .wh-preview .note {
+  background: #fffdfa;
+  border: 1px solid #f3e8d5;
+  border-left: 4px solid #b08d57;
+  border-radius: 12px;
+  padding: .8rem 1rem;
+  color: #374151;
+}
+
+/* ______________________________________ */
+
+/* 8) Аккуратные кнопочные ссылки внутри превью (если встречаются) */
+.light .wh-preview .btn-link,
+.light .wh-preview a.button,
+.light .wh-preview button.linky {
+  display: inline-block;
+  border: 1px solid #e6e7ea;
+  border-radius: 10px;
+  padding: .35rem .7rem;
+  text-decoration: none;
+  color: #0f172a;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
+/* ______________________________________ */
+
+.light .wh-preview .btn-link:hover,
+.light .wh-preview a.button:hover,
+.light .wh-preview button.linky:hover {
+  border-color: #b08d57;
+  box-shadow: 0 0 0 3px rgba(176,141,87,.12);
+}
+
+/* ______________________________________ */
+
+/* 9) Мелочь для визуального ритма в больших текстах */
+.light .wh-preview p + h2,
+.light .wh-preview p + h3 { margin-top: 1.2em; }
+
+/* === LIGHT: структурируем "лейбл: значение" в превью, даже если это <p> или <li> === */
+
+/* Общий контейнер секции — тонкие разделители строк */
+.light .wh-preview .wh-frame,
+.light .wh-preview .card {
+  --kv-border: #eef2f7;
+}
+
+/* ______________________________________ */
+
+/* Строки в виде параграфов: <p><strong>Лейбл:</strong> значение... */
+.light .wh-preview .wh-frame p:has(> strong:first-child),
+.light .wh-preview .card     p:has(> strong:first-child) {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  column-gap: 14px;
+  align-items: baseline;
+  padding: .45rem 0;
+  border-top: 1px solid var(--kv-border);
+}
+
+/* ______________________________________ */
+
+.light .wh-preview .wh-frame p:has(> strong:first-child):first-child,
+.light .wh-preview .card     p:has(> strong:first-child):first-child {
+  border-top: 0;
+}
+
+/* ______________________________________ */
+
+/* Лейбл слева — капс, серая, компактная типографика */
+.light .wh-preview .wh-frame p > strong:first-child,
+.light .wh-preview .card     p > strong:first-child {
+  grid-column: 1;
+  color: #6b7280;                 /* gray-500 */
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 700;
+  font-size: .78rem;
+  line-height: 1.3;
+  white-space: nowrap;
+  margin-right: .4rem;            /* на всякий случай для переносов */
+}
+
+/* ______________________________________ */
+
+/* Значение рендерится как текстовый поток во 2-й колонке автоматически */
+
+/* Вариант через список: <ul><li><strong>Лейбл</strong> значение</li> */
+.light .wh-preview .wh-frame li:has(> strong:first-child),
+.light .wh-preview .card     li:has(> strong:first-child) {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  column-gap: 14px;
+  align-items: baseline;
+  padding: .40rem 0;
+  border-top: 1px solid var(--kv-border);
+  list-style: none;               /* свой маркер убираем */
+}
+
+/* ______________________________________ */
+
+.light .wh-preview .wh-frame li:has(> strong:first-child)::before,
+.light .wh-preview .card     li:has(> strong:first-child)::before { content: none; }
+
+.light .wh-preview .wh-frame li > strong:first-child,
+.light .wh-preview .card     li > strong:first-child {
+  grid-column: 1;
+  color: #6b7280;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-weight: 700;
+  font-size: .78rem;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+
+/* ______________________________________ */
+
+/* Чуть выразительности заголовку секции в светлой теме */
+.light .wh-preview .section-title,
+.light .wh-preview .card > .title {
+  color: #0f172a;
+  font-weight: 800;
+  letter-spacing: .03em;
+  border-bottom: 1px solid #e6e7ea;
+  padding-bottom: .5rem;
+  margin-bottom: .7rem;
+}
+
+/* ______________________________________ */
+
+/* Маркеры списков внутри превью — латунь, но аккуратная */
+.light .wh-preview ul:not(:has(> li > strong:first-child)) > li::marker { 
+  color: #b08d57; opacity: .65;
+}
+
+/* ______________________________________ */
+
+/* На широких экранах делаем блок «главной инфы» визуально плотнее */
+@media (min-width: 900px) {
+  .light .wh-preview .wh-frame p:has(> strong:first-child),
+  .light .wh-preview .wh-frame li:has(> strong:first-child),
+  .light .wh-preview .card     p:has(> strong:first-child),
+  .light .wh-preview .card     li:has(> strong:first-child) {
+    padding: .5rem 0;
+  }
+}
+
+/* ______________________________________ */
+
+/* ==== LIGHT: авторизация читаемая, без «адской» темноты ==== */
+.light .auth-card {
+  background: #ffffff !important;
+  color: #111827 !important;             /* gray-900 */
+  border: 1px solid #e5e7eb !important;  /* gray-200 */
+  border-radius: 16px;
+  box-shadow: 0 12px 28px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.05);
+}
+
+/* ______________________________________ */
+
+/* Заголовок "Требуется авторизация" — без сильного глоу */
+.light .auth-title {
+  color: #0f172a !important;             /* slate-900 */
+  text-shadow: none !important;
+  letter-spacing: .01em;
+}
+
+/* ______________________________________ */
+
+/* Поля ввода на белом фоне — нормальные */
+.light .auth-input {
+  background: #f9fafb !important;        /* gray-50 */
+  color: #111827 !important;             /* gray-900 */
+  border: 1px solid #d1d5db !important;  /* gray-300 */
+  border-radius: 12px;
+}
+
+/* ______________________________________ */
+
+.light .auth-input::placeholder {
+  color: #9ca3af !important;             /* gray-400 */
+}
+
+/* ______________________________________ */
+
+.light .auth-input:focus {
+  border-color: #B08D57 !important;
+  box-shadow: 0 0 0 3px rgba(176,141,87,.18) !important; /* латунное кольцо */
+}
+
+/* ______________________________________ */
+
+/* Кнопка войти — заметная, но без «кислоты» */
+.light .auth-button {
+  background: #111827 !important;        /* почти чёрная */
+  color: #ffffff !important;
+  border: 1px solid #111827 !important;
+  border-radius: 12px;
+}
+
+/* ______________________________________ */
+
+.light .auth-button:hover {
+  filter: brightness(1.05);
+  box-shadow: 0 0 0 3px rgba(17,24,39,.12);
+}
+
+/* ______________________________________ */
+
+/* Иконки-индикаторы в инпутах — не должны теряться */
+.light .auth-input-addon {
+  color: #6b7280 !important;             /* gray-500 */
+}
+
+/* ______________________________________ */
+
+@layer utilities {
+  .text-glow-brass {
+    text-shadow:
+      0 0 8px rgba(180, 141, 87, .55),
+      0 0 18px rgba(180, 141, 87, .35);
+  }
+}
+
+/* ______________________________________ */
+
+@layer components {
+  /* Обёртка для контентных блоков статьи */
+  .content-rich {
+    @apply space-y-6;
+  }
+
+  /* ______________________________________ */
+
+  .content-rich p {
+    @apply leading-relaxed text-gray-800 dark:text-gray-300;
+  }
+
+  /* ______________________________________ */
+
+  .content-rich ul {
+    @apply list-disc pl-5 space-y-2;
+  }
+
+  /* ______________________________________ */
+
+  .content-rich ul > li::marker {
+    color: #B08D57; /* brass */
+    opacity: .75;
+  }
+
+  /* ______________________________________ */
+
+  /* Заголовки статьи */
+  .content-rich h1 { @apply text-3xl sm:text-4xl font-extrabold tracking-tight text-gray-900 dark:text-brass; }
+  .content-rich h2 { @apply text-2xl sm:text-3xl font-extrabold tracking-tight text-gray-900 dark:text-brass; }
+
+  /* Дарк: сочное «золотое» свечение, как в превью */
+  .dark .content-rich :is(h1,h2) {
+    text-shadow:
+      0 0 8px rgba(180,141,87,.55),
+      0 0 18px rgba(180,141,87,.35),
+      0 2px 6px rgba(0,0,0,.65);
+  }
+
+  /* ______________________________________ */
+
+  /* Лайт: без крика — аккуратный латунный подчёрк */
+  .light .content-rich :is(h1,h2) {
+    text-shadow: none;
+    position: relative;
+  }
+
+  /* ______________________________________ */
+
+  .light .content-rich :is(h1,h2)::after {
+    content: "";
+    display: block;
+    height: 3px;
+    margin-top: .4rem;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #b08d57, rgba(176,141,87,0));
+    opacity: .35;
+  }
+}
+
+/* ______________________________________ */
+
+/* === ЕДИНЫЙ СТИЛЬ ЗАГОЛОВКОВ ВО ВСЕХ ТЕМАХ ========================= */
+/* Если в светлой теме где-то оставались подчеркивания — гасим их */
+.light .wh-preview h2::after,
+.light .wh-preview h3::after { display: none !important; }
+
+/* ______________________________________ */
+
+/* Пульсирующее латунное свечение (и в лайте, и в дарке одинаково) */
+@keyframes brass-glow {
+  0%, 100% {
+    text-shadow:
+      0 0 8px rgba(180,141,87,.55),
+      0 0 18px rgba(180,141,87,.35),
+      0 2px 6px rgba(0,0,0,.65);
+  }
+
+  /* ______________________________________ */
+
+  50% {
+    text-shadow:
+      0 0 14px rgba(210,180,110,.75),
+      0 0 28px rgba(180,141,87,.45),
+      0 3px 10px rgba(0,0,0,.75);
+  }
+}
+
+/* ______________________________________ */
+
+@layer utilities {
+  /* Один-единственный вариант утилиты: одинаковый в обеих темах */
+  .text-glow-brass,
+  .content-rich :is(h1,h2) {
+    color: #b08d57 !important;
+    text-shadow:
+      0 0 8px rgba(180,141,87,.55),
+      0 0 18px rgba(180,141,87,.35),
+      0 2px 6px rgba(0,0,0,.65);
+    animation: brass-glow 4s ease-in-out infinite;
+    position: relative;
+  }
+
+  /* ______________________________________ */
+
+  /* По желанию — мягкая «ореольная» подложка под заголовками */
+  .glow-halo::before {
+    content: "";
+    position: absolute;
+    inset: -4px -8px;
+    background: radial-gradient(circle, rgba(180,141,87,.08), transparent 70%);
+    filter: blur(8px);
+    z-index: -1;
+  }
+}
+
+/* ______________________________________ */
+
+@layer components {
+  /* Карточка «ключ-значение» (Главная информация) */
+  .kv-card {
+    @apply rounded-xl px-4 py-3;
+    @apply bg-white/70 dark:bg-black/20;
+    @apply border border-gray-200/80 dark:border-gray-700/60;
+  }
+
+  /* ______________________________________ */
+
+  .kv-grid {
+    display: grid;
+    grid-template-columns: minmax(150px, 220px) 1fr;
+    column-gap: 14px;
+  }
+
+  /* ______________________________________ */
+
+  .kv-row {
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
+    @apply items-baseline py-2;
+    border-top: 1px solid rgba(148,163,184,.28); /* slate-400/28 */
+  }
+
+  /* ______________________________________ */
+
+  .kv-row:first-child { border-top: 0; }
+
+  .kv-label {
+    @apply flex items-center gap-2;
+    @apply text-xs uppercase tracking-wider font-extrabold;
+    @apply text-gray-600 dark:text-gray-400;
+    letter-spacing: .06em;
+  }
+
+  /* ______________________________________ */
+
+  .kv-value {
+    @apply text-[0.975rem] leading-6;
+    @apply text-gray-900 dark:text-gray-200;
+  }
+
+  /* ______________________________________ */
+
+  .dark .kv-label {
+    text-shadow:
+      0 0 6px rgba(176,141,87,.35),
+      0 1px 3px rgba(0,0,0,.45);
+  }
+}
+
+/* ______________________________________ */
+
+@layer components {
+  .icon-btn {
+    @apply p-2 w-8 h-8 inline-flex items-center justify-center rounded-lg transition
+           text-gray-700 bg-white border border-gray-200
+           hover:bg-stone-100 hover:border-brass
+           dark:text-gray-300 dark:bg-zinc-800/70 dark:border-zinc-700
+           dark:hover:text-white dark:hover:border-brass;
+  }
+
+  /* ______________________________________ */
+
+  .icon-btn--danger:hover {
+    @apply hover:text-red-700 hover:border-red-400 hover:bg-red-50 dark:hover:text-red-400;
+  }
+}
+
+/* ______________________________________ */
+
+/* доубей глобалку точечно */
+.light .action-btn { 
+  background-color: #1f2937 !important; /* bg-gray-800 */
+  color: #fff !important;
+  border-color: #b08d57 !important;     /* brass */
+}
+
+/* ______________________________________ */
+
+/* ==== FIX: белая «полка» в карточках превью (светлая тема) ==== */
+
+/* Подпись/титр внизу — прозрачный фон + белый текст поверх градиента */
+.light .wh-frame:has(img, .smartimg-frame) [class*="caption"],
+.light .wh-frame:has(img, .smartimg-frame) [class*="title"] {
+  background: transparent !important;
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  color: #fff !important;      /* перебиваем .light .wh-frame * { color: ... } */
+  padding: 10px 12px;
+}
+
+/* ______________________________________ */
+
+/* Градиент-оверлей поверх картинки (одинаково для обеих тем) */
+.wh-frame:has(img, .smartimg-frame) {
+  position: relative;
+  overflow: hidden;             /* не даём оверлею вылезать за скругления */
+  border-radius: inherit;
+}
+
+/* ______________________________________ */
+
+.wh-frame:has(img, .smartimg-frame)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.88) 0%,
+    rgba(0,0,0,.65) 45%,
+    rgba(167, 66, 66, 0) 70%
+  );
+}
+
+/* ______________________________________ */
+
+/* Если подпись пришла с тёмным классом — тоже делаем её прозрачной */
+.light .wh-frame:has(img, .smartimg-frame)
+  :where([class*="caption"], [class*="title"]).bg-gray-900 {
+  background: transparent !important;
+}
+
+/* ______________________________________ */
+
+/* Если домашние карточки НЕ на .wh-frame, продублируй для их корневого класса: */
+/*
+.light .article-card:has(img, .smartimg-frame) .article-card__caption { ... те же стили ... }
+.article-card:has(img, .smartimg-frame)::after { ... тот же градиент ... }
+*/
+
+/* ______________________________________ */
+
+/* Карточка с картинкой: затемняем низ изображения и кладём титр поверх */
+.wh-frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+/* ______________________________________ */
+
+.wh-frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,.88) 0%,
+    rgba(0,0,0,.65) 45%,
+    rgba(0,0,0,0) 70%
+  );
+}
+
+/* ______________________________________ */
+
+/* Титр/подпись внизу — без фоновой плашки, белый текст */
+.wh-frame [class*="caption"],
+.wh-frame [class*="title"] {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  z-index: 2;
+  padding: 10px 12px;
+  background: transparent !important;
+  color: #fff !important;
+}
+
+/* ______________________________________ */
+
+/* === FW: стилизованный селект сортировки ============================= */
+.sort-wrap { position: relative; display: inline-block; }
+
+/* ______________________________________ */
+
+/* Без @function: сразу инлайн dataURI со стрелкой */
+.sort-select {
+  appearance: none; -webkit-appearance: none; -moz-appearance: none;
+  @apply rounded-xl border-2 px-3 pr-10 py-2 text-sm;
+  background-color: #111827; /* gray-900 */
+  color: #e5e7eb;            /* gray-200 */
+  border-color: var(--brass);
+  box-shadow:
+    0 0 20px rgba(180,141,87,.20),
+    0 10px 30px rgba(0,0,0,.55),
+    inset 0 0 14px rgba(0,0,0,.45);
+  transition: box-shadow .25s, border-color .25s, transform .12s;
+
+  /* стрелка справа — сразу url(...) */
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23B08D57' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right .65rem center;
+  background-size: 1rem;
+}
+
+/* ______________________________________ */
+
+.sort-select:hover {
+  box-shadow: 0 0 24px rgba(176,141,87,.25), 0 10px 30px rgba(0,0,0,.55), inset 0 0 14px rgba(0,0,0,.45);
+}
+
+/* ______________________________________ */
+
+.sort-select:focus {
+  outline: none;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(176,141,87,.14), 0 10px 30px rgba(0,0,0,.55), inset 0 0 14px rgba(0,0,0,.45);
+}
+
+/* ______________________________________ */
+
+.sort-select:active { transform: translateY(1px); }
+
+/* ______________________________________ */
+
+/* Светлая тема — своя стрелка и палитра */
+.light .sort-select {
+  background-color: #ffffff;
+  color: #111827;
+  border-color: #d1d5db !important; /* gray-300 */
+  box-shadow:
+    0 14px 30px rgba(0,0,0,.06),
+    0 3px 10px rgba(0,0,0,.04);
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23374151' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+}
+
+/* ______________________________________ */
+
+/* Чуть поправка выравнивания в Firefox */
+@-moz-document url-prefix() {
+  .sort-select { background-position: right .55rem center; }
+}
+
+
+
+
+
+
+
+
+
