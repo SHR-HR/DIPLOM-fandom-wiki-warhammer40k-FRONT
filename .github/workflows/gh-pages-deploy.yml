@@ -12,26 +12,25 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # берем всю историю, помогает с fetch
 
-      - name: Use Node.js 18
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependencies (FRONT)
-        run: npm ci --prefix FRONT
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Build (FRONT)
+      - name: Build
         env:
           VITE_API_URL: ${{ secrets.VITE_API_URL || 'http://localhost:8000' }}
-        run: npm run build --prefix FRONT
+        run: npm run build
 
       - name: Deploy to gh-pages
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          # куда пушим (ветка)
           branch: gh-pages
-          # папка, которую развернём
-          folder: FRONT/dist
-          # очистить ветку перед деплоем
+          folder: dist
           clean: true
