@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Базовые мета-теги -->
+    <meta charset="UTF-8" />
+    
+    <!-- Иконка сайта (favicon) в формате SVG для лучшего масштабирования -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
+    <!-- Viewport для корректного отображения на мобильных устройствах -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Заголовок страницы (отображается во вкладке браузера) -->
+    <title>Fandom Wiki — Warhammer 40k</title>
+    <script type="module" crossorigin src="/assets/index-C_2_JlYQ.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-CCnzvC2L.css">
+  </head>
+  <body>
+    <!-- Корневой контейнер для React приложения -->
+    <!-- React будет монтировать все компоненты внутрь этого div -->
+    <div id="root"></div>
+    
+    <!-- Основной скрипт приложения -->
+    <!-- type="module" указывает на использование ES6 модулей -->
+    <!-- src="/src/main.tsx" - точка входа TypeScript/React приложения -->
+  </body>
+</html>
+
+
+
+
+
+
+
+
+<!-- 
+
+
+Подробное объяснение структуры HTML:
+Декларация документа:
+
+<!DOCTYPE html>
+
+Назначение: Сообщает браузеру, что это документ HTML5
+
+Важность: Обеспечает стандартный режим отображения (standards mode)
+
+
+Секция <head>:
+Кодировка символов:
+
+<meta charset="UTF-8" />
+
+UTF-8 поддерживает все символы Unicode (включая кириллицу)
+
+Критично для многоязычных сайтов, включая русские названия Warhammer
+
+Favicon:
+
+<link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+SVG формат - векторный, четкий на любых разрешениях
+
+Vite лого - временная иконка, можно заменить на тематическую Warhammer
+
+Viewport:
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+Адаптивность - обеспечивает правильное отображение на мобильных устройствах
+
+Масштабирование - начальный масштаб 1.0 без зума
+
+Заголовок:
+
+<title>Fandom Wiki — Warhammer 40k</title>
+
+Отображается во вкладке браузера и результатах поиска
+
+Содержит ключевые слова для SEO: "Fandom Wiki", "Warhammer 40k"
+
+Секция <body>:
+Корневой контейнер:
+
+<div id="root"></div>
+
+React точка монтирования - всё приложение будет отрисовано здесь
+
+ID "root" - стандартное имя для React приложений
+
+Пустой изначально - наполняется JavaScript после загрузки
+
+Скрипт приложения:
+
+<script type="module" src="/src/main.tsx"></script>
+
+type="module" - позволяет использовать современный JavaScript (ES6 модули)
+
+src="/src/main.tsx" - точка входа Vite/React/TypeScript приложения
+
+Автоматическая обработка - Vite компилирует TypeScript на лету
+
+Особенности для Warhammer 40,000 вики:
+SEO оптимизация (будущие улучшения):
+
+Можно добавить для лучшего SEO
+
+<meta name="description" content="Фандомная вики по вселенной Warhammer 40,000. 
+Персонажи, фракции, история и тактика." />
+<meta name="keywords" content="Warhammer 40k, Warhammer 40,000, вики, фандом" />
+
+Тематический favicon:
+
+В будущем заменить на иконку Warhammer
+
+<link rel="icon" type="image/svg+xml" href="/warhammer-icon.svg" />
+
+Open Graph мета-теги (для соцсетей):
+
+<meta property="og:title" content="Fandom Wiki — Warhammer 40k" />
+<meta property="og:description" content="Фандомная вики по вселенной Warhammer 40,000" />
+<meta property="og:image" content="/warhammer-preview.jpg" />
+
+Интеграция с Vite:
+Пути в разработке:
+
+
+
+В development-режиме Vite обслуживает из /src/
+
+<script type="module" src="/src/main.tsx"></script>
+
+
+В production-режиме путь изменится на:
+<script type="module" src="/assets/index-abc123.js"></script>
+
+Hot Module Replacement (HMR):
+Vite автоматически добавляет скрипты для горячей перезагрузки
+
+Изменения в коде мгновенно отражаются без перезагрузки страницы
+
+Доступность (Accessibility):
+Улучшения для скринридеров:
+
+Можно добавить для лучшей доступности
+<html lang="ru">  если контент преимущественно на русском
+
+ARIA атрибуты:
+
+React может добавлять динамически
+<div id="root" role="main" aria-live="polite"></div>
+
+Производительность:
+Оптимизация загрузки:
+Скрипт загружается асинхронно (благодаря type="module")
+
+Не блокирует отображение страницы
+
+Vite автоматически разбивает код на чанки
+
+Этот HTML файл служит минимальной, 
+но полнофункциональной основой для современного React приложения вики 
+по Warhammer 40,000, обеспечивая все необходимые настройки для разработки 
+и будущего расширения функциональности.
+
+ -->
+
+
+
+
+ 
