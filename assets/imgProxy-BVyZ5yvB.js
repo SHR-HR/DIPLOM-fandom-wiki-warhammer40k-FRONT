@@ -1,4 +1,4 @@
-import{B as s}from"./index-BOMAx2s1.js";const n="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'>
+import{B as s}from"./index-C_2_JlYQ.js";const n="data:image/svg+xml;utf8,"+encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='720'>
       <defs>
         <!-- Темный градиентный фон в стиле Warhammer -->
         <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
